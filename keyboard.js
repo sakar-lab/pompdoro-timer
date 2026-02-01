@@ -1,6 +1,7 @@
 document.addEventListener('keydown', function(event) {
     switch(event.key) {
         case ' ':
+        case 'Enter':
         case 'p':
             pauseResume() 
             break;
@@ -8,7 +9,8 @@ document.addEventListener('keydown', function(event) {
             startStop();
             break;
         case 'm':
-            handleMenuLinkClick();
+        case 'Escape':
+            handleMenu();
             break;
     }
 });

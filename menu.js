@@ -5,8 +5,7 @@ const overlay = document.getElementById('overlay');
 menuButton.addEventListener('click', handleMenuLinkClick);
 overlay.addEventListener('click', handleMenuLinkClick);
 
-function handleMenuLinkClick(event) {
-    event.preventDefault();
+function handleMenu(){
     if (menu.classList.contains('hidden')) {
         overlay.classList.remove('hidden');
         menu.classList.remove('hidden');
@@ -15,3 +14,9 @@ function handleMenuLinkClick(event) {
         menu.classList.add('hidden');
     }
 }
+
+function handleMenuLinkClick(event) {
+    event.preventDefault();
+    handleMenu();
+}
+
