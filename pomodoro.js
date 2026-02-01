@@ -34,30 +34,30 @@ document.addEventListener("DOMContentLoaded", () => {
 
   syncButtons();
 
-  startStopBtn.addEventListener("click", () => {
-    // If running or paused: STOP resets
+  function startStop() {
     if (pomodoro.running() || pomodoro.paused()) {
       pomodoro.stop();
-      syncButtons();
-      return;
+    } else {
+      const work = Math.max(1, parseInt(workInput.value, 10) || 25);
+      const brk  = Math.max(1, parseInt(breakInput.value, 10) || 5);
+      pomodoro.setWorkDuration(work);
+      pomodoro.setBreakDuration(brk);
+      pomodoro.start();
     }
-
-    // Otherwise START: apply inputs then start
-    const work = Math.max(1, parseInt(workInput.value, 10) || 25);
-    const brk  = Math.max(1, parseInt(breakInput.value, 10) || 5);
-    pomodoro.setWorkDuration(work);
-    pomodoro.setBreakDuration(brk);
-
-    pomodoro.start();
     syncButtons();
-  });
+  }
 
-  pauseResumeBtn.addEventListener("click", () => {
+  startStopBtn.addEventListener("click", startStop);
+
+
+  function pauseResume() {
     if (pomodoro.running()) {
       pomodoro.pause();
     } else if (pomodoro.paused()) {
       pomodoro.start(); // resume
     }
     syncButtons();
-  });
+  }
+
+  pauseResumeBtn.addEventListener("click", pauseResume);
 });
